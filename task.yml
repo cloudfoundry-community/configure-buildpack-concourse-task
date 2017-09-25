@@ -1,0 +1,32 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: starkandwayne/concourse
+
+inputs:
+- name: buildpack
+- name: configure-buildpack-concourse-task
+
+outputs:
+- name: custom-buildpack
+
+run:
+  path: configure-buildpack-concourse-task/task.sh
+
+params:
+  BUILDPACK_ZIP_GLOB: # buildpack/java-buildpack-*.zip  
+  PATCHES:
+  # - file: config/*.yml
+  #   search: https://java-buildpack.cloudfoundry.org
+  #   replace: http://example.com/repository/dicf-internal/java-buildpack-artifacts
+  # - file: config/dyadic_ekm_security_provider.yml
+  #   search: https://repo.dyadicsec.com/cust/pcf
+  #   replace: "{default.repository.root}/java-buildpack-artifacts/dsm"
+  # - file: config/components.yml
+  #   delete:
+  #   - JavaBuildpack::Framework::DyadicEkmSecurityProvider
+  #   - JavaBuildpack::Framework::DyadicEkmSecurityProvider
+  
