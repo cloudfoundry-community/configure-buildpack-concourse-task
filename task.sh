@@ -29,8 +29,6 @@ done
 
 rm -f config/*.ymle
 
-popd > /dev/null
-
 set +e; diff -u -r ${CLEANDIR} ${WORKDIR}; set -e
 
-zip -qq -r custom-buildpack/custom-${BUILDPACK} ${WORKDIR}/*
+zip -qq -r custom-buildpack/custom-${BUILDPACK} *
