@@ -4,6 +4,8 @@ set -e
 
 WORKDIR=$(mktemp -d -t 'custom.XXXX'); CLEANDIR=$(mktemp -d -t 'upstream.XXXX')
 BUILDPACK=$(basename $(ls ${BUILDPACK_ZIP_GLOB}))
+OUTPUT="$(pwd)/custom-buildpack"
+
 unzip -qq ${BUILDPACK_ZIP_GLOB} -d ${WORKDIR}
 cp -r ${WORKDIR}/* ${CLEANDIR}
 
@@ -31,4 +33,4 @@ rm -f config/*.ymle
 
 set +e; diff -u -r ${CLEANDIR} ${WORKDIR}; set -e
 
-zip -qq -r custom-buildpack/custom-${BUILDPACK} *
+zip -qq -r ${OUTPUT}/custom-${BUILDPACK} *
