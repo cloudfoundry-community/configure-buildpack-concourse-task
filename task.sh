@@ -29,7 +29,7 @@ for row in $(echo "${PATCHES}" | jq -r '.[] | @base64'); do
     fi
 done
 
-rm -f config/*.yml
+rm -f config/*.ymle
 
 set +e; diff -u -r ${CLEANDIR} ${WORKDIR}; set -e
 
